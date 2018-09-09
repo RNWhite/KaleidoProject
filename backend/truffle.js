@@ -11,14 +11,17 @@
  *     gasPrice: 10000000000,
  *   },
  */
- 
-  module.exports = {
-    networks:{
-      development:{
-        host:"localhost",
-        port:8545,
-        network_id:'*'
+var Web3 = require('web3');
+
+module.exports = {
+  networks: {
+      Doctors_node: {
+        provider: () => {
+          return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0pby8ewjs', '_qoYpNhjdiYPg_hdBy4Nc8lk7hCaZ6Ri2gB3VYTzQlo');
+        },
+        network_id: "*", // Match any network id
+        gasPrice: 0,
+        gas: 4500000
       }
     }
-  };
-
+};
