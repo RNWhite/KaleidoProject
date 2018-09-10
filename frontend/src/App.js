@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 import logo from './logo.svg';
 import './App.css';
 import { ratingContract } from "./setup";
 import {ShowDoctors } from "./ShowDoctors";
-
-window.rc = ratingContract;
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state={
       doctors : ['Dr. Carlo Mertz302', 'Dr. Ava Hand954', 'Dr. Jimmy Dach745', 'Dr. Jay Dickins196'].map ( doctor => {
-        return {name: doctor, rating: ratingContract.totalVotesFor(doctor).toNumber()}
+        return {name: doctor, votes: 0}
       })
     }
     this.handleVoting=this.handleVoting.bind(this)
   }
-
-handleVoting(doctor){
+  async componentDidMount(){
+    let req = await fetch('/votes');
+    let data = await req.json();
+    let doctorSet = [...this.state.doctors, ...data].reduce((hash, curr) => { hash[curr.name] = curr; return hash }, {})
     
-    ratingContract.voteForDoctor(doctor)
-    let votes=ratingContract.totalVotesFor(doctor).toNumber()
-    this.setState({doctors:this.state.doctors.map(
-      (el)=>el.name===doctor? Object.assign({},el,{rating:votes}):el
-      
-    )});
-    console.log(ratingContract.totalVotesFor(doctor).toNumber())
+    
+
+    this.setState({doctors: Object.keys(doctorSet).map(k => doctorSet[k]) })
   }
+  async handleVoting(doctor){
+    let req = await fetch(`/votes/${doctor}`, {method: 'POST'})
+    let data = await req.json()
+      // ratingContract.voteForDoctor(doctor)
+      // let votes=ratingContract.totalVotesFor(doctor).toNumber()
+      this.setState({doctors:this.state.doctors.map(
+        (el)=>el.name===doctor? Object.assign({},el,{votes: data.votes}):el
+        
+      )});
+      // console.log(ratingContract.totalVotesFor(doctor).toNumber())
+    }
   render() {
     return (
       <div className="App">

@@ -15,6 +15,11 @@ var Web3 = require('web3');
 
 module.exports = {
   networks: {
+    development:{
+      host:"localhost",
+      port:8545,
+      network_id:'*'
+    },
       Doctors_node: {
         provider: () => {
           return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0h16yhzw4', 'n_9tPGKmEGyeXIJsUgjVdMHVluTWKcLbaXr4I4fSghE');

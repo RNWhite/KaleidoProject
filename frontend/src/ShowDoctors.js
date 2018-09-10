@@ -11,7 +11,7 @@ export class ShowDoctors extends Component{
         let doctorList=this.props.doctors.map((doctor,i)=>
         <tr key={i}>
             <td onClick={this.handleChange.bind(this,doctor.name)}>{doctor.name}</td>
-            <td>{doctor.rating}</td>
+            <td>{doctor.votes}</td>
         </tr>)
 
         return(

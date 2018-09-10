@@ -25,10 +25,6 @@ contract SimpleStorage {
     return ratingsReceived[doctor];
   }
 
-  function listDoctors() view public returns (bytes32[]) {
-      return doctorList;
-  }
-
   // This function increments the vote count for the specified doctor. Equivalent to upvoting
   function voteForDoctor(bytes32 doctor) public {
     ratingsReceived[doctor] += 1;
