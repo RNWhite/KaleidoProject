@@ -4,6 +4,8 @@ import './App.css';
 import { ratingContract } from "./setup";
 import {ShowDoctors } from "./ShowDoctors";
 
+window.rc = ratingContract;
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -16,14 +18,14 @@ class App extends Component {
   }
 
 handleVoting(doctor){
-  
+    
     ratingContract.voteForDoctor(doctor)
     let votes=ratingContract.totalVotesFor(doctor).toNumber()
     this.setState({doctors:this.state.doctors.map(
       (el)=>el.name===doctor? Object.assign({},el,{rating:votes}):el
       
     )});
-    
+    console.log(ratingContract.totalVotesFor(doctor).toNumber())
   }
   render() {
     return (

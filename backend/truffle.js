@@ -17,7 +17,7 @@ module.exports = {
   networks: {
       Doctors_node: {
         provider: () => {
-          return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0pby8ewjs', '_qoYpNhjdiYPg_hdBy4Nc8lk7hCaZ6Ri2gB3VYTzQlo');
+          return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0h16yhzw4', 'n_9tPGKmEGyeXIJsUgjVdMHVluTWKcLbaXr4I4fSghE');
         },
         network_id: "*", // Match any network id
         gasPrice: 0,

@@ -7,25 +7,29 @@ contract SimpleStorage {
   
   mapping (bytes32 => uint8) public ratingsReceived;
   
-  /* We will use an array of bytes32 to store the list of movies
+  /* We will use an array of bytes32 to store the list of doctors
   */
   
   bytes32[] public doctorList;
 
   /* This is the constructor which will be called once when you
   deploy the contract to the blockchain. When we deploy the contract,
-  we will pass an array of movies for which users will give ratings
+  we will pass an array of doctors for which users will give ratings
   */
   function SimpleStorage(bytes32[] doctorNames) public {
     doctorList = doctorNames;
   }
 
-  // This function returns the total ratings a movie has received so far
+  // This function returns the total ratings a doctor has received so far
   function totalVotesFor(bytes32 doctor) view public returns (uint8) {
     return ratingsReceived[doctor];
   }
 
-  // This function increments the vote count for the specified movie. Equivalent to upvoting
+  function listDoctors() view public returns (bytes32[]) {
+      return doctorList;
+  }
+
+  // This function increments the vote count for the specified doctor. Equivalent to upvoting
   function voteForDoctor(bytes32 doctor) public {
     ratingsReceived[doctor] += 1;
   }
