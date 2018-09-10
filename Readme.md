@@ -6,6 +6,5 @@ Add in Redux to support handling "currently online" functionality
 
 Add in websockets to support "currently online" functionality
 
-Add in MongoDB to store kaleido credentials 
 
 Obfuscate keys
