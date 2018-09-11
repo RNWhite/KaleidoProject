@@ -5,6 +5,8 @@ import './App.css';
 import { ratingContract } from "./setup";
 import {ShowDoctors } from "./ShowDoctors";
 
+import socketIOClient from 'socket.io-client';
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -16,6 +18,13 @@ class App extends Component {
     this.handleVoting=this.handleVoting.bind(this)
   }
   async componentDidMount(){
+    let socket = socketIOClient('/');
+    socket.on('event', (data) => {
+      this.setState({doctors:this.state.doctors.map(
+        (el)=>el.name===data.name? Object.assign({},el,{votes: data.votes}):el
+        
+      )});
+    })
     let req = await fetch('/votes');
     let data = await req.json();
     let doctorSet = [...this.state.doctors, ...data].reduce((hash, curr) => { hash[curr.name] = curr; return hash }, {})
