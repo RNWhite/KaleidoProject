@@ -22,7 +22,7 @@ module.exports = {
     },
       Doctors_node: {
         provider: () => {
-          return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0h16yhzw4', 'n_9tPGKmEGyeXIJsUgjVdMHVluTWKcLbaXr4I4fSghE');
+          return new Web3.providers.HttpProvider('https://u0wocf8ycj-u0wabu53sf-rpc.us-east-2.kaleido.io', 0, 'u0gqsojsm2', '0OF1p1AhXLOOLKNq4jwu1xJQ8QaCR2ceUqwXeFatCtE');
         },
         network_id: "*", // Match any network id
         gasPrice: 0,
